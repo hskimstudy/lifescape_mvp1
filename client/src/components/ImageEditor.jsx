@@ -62,7 +62,7 @@ export default function ImageEditor({ session, onBack, onLogout, showToast }) {
     const [fbHideForWeek, setFbHideForWeek] = useState(false)
     const [hideCopyright30Days, setHideCopyright30Days] = useState(false)
     // Backend URL: empty string means requests go through Vite proxy (avoids CORS)
-    const backendUrl = import.meta.env.VITE_API_URL || ''
+    const backendUrl = import.meta.env.VITE_API_URL || '/api'
 
     const selectedPresetMeta = BACKGROUND_PRESETS.find(p => p.id === selectedPreset)
     const isAiModelPreset = selectedPreset === 'scandinavian'

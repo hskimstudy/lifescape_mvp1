@@ -7,17 +7,13 @@ export default defineConfig({
   server: {
     allowedHosts: 'all',
     proxy: {
-      '/generate': {
+      '/api': {
         target: 'http://localhost:8000',
         changeOrigin: true,
         secure: false,
+        rewrite: (path) => path.replace(/^\/api/, ''),
       },
       '/generated': {
-        target: 'http://localhost:8000',
-        changeOrigin: true,
-        secure: false,
-      },
-      '/contact': {
         target: 'http://localhost:8000',
         changeOrigin: true,
         secure: false,
