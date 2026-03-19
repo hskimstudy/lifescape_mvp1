@@ -1,0 +1,15 @@
+fastapi
+uvicorn
+torch
+diffusers>=0.30.0
+python-multipart
+transformers
+accelerate
+pillow
+python-multipart
+safetensors
+sentencepiece
+protobuf
+huggingface_hub>=0.25.0
+peft
+filelock<3.13.0

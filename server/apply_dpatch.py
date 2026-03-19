@@ -1,0 +1,39 @@
+import os
+import glob
+
+# Try to find the file dynamically to be safe, or use hardcoded path
+possible_paths = glob.glob("/usr/local/lib/python3.*/dist-packages/diffusers/models/attention_dispatch.py")
+if not possible_paths:
+    print("Could not find attention_dispatch.py")
+    exit(1)
+
+path = possible_paths[0]
+print(f"Patching {path}")
+
+with open(path, 'r') as f:
+    lines = f.readlines()
+
+new_lines = []
+patched = False
+for line in lines:
+    if "out = torch.nn.functional.scaled_dot_product_attention(" in line:
+        # Check if previous line is already the patch
+        if new_lines and "kwargs.pop('enable_gqa'" in new_lines[-1]:
+            print("Already patched.")
+            new_lines.append(line)
+            continue
+            
+        # Add the patch with 8 spaces indentation (standard inside the function)
+        new_lines.append("        kwargs.pop('enable_gqa', None)\n")
+        new_lines.append(line)
+        patched = True
+    else:
+        new_lines.append(line)
+
+with open(path, 'w') as f:
+    f.writelines(new_lines)
+
+if patched:
+    print("Successfully patched.")
+else:
+    print("No patch needed or already patched (if detected).")

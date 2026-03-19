@@ -1,0 +1,53 @@
+# Node
+node_modules/
+client/dist/
+.npm
+.eslintcache
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+ENV/
+env/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Sensitive Info (Included by User Request)
+# .env
+*.pem
+id_rsa
+id_ed25519
+id_runpod
+
+# Large Files / Backups
+*.tar
+*.zip
+*.7z
+*.rar
+mvp_deploy.tar
+# Models & Large Assets
+# models/ (if you have a models folder, uncomment this)
+server/generated/
+pytorch_lora_weights.safetensors
+.vercel
+.env*.local

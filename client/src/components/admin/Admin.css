@@ -1,0 +1,407 @@
+/* ===== Admin Pro — itda Design System ===== */
+
+.admin-container {
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+    background: #0c0c0e;
+    color: #e2e8f0;
+    font-family: 'Inter', sans-serif;
+    overflow: hidden;
+}
+
+/* ——— Sidebar ——— */
+.admin-sidebar {
+    width: 260px;
+    background: #141416;
+    border-right: 1px solid rgba(255, 255, 255, 0.06);
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+}
+
+.admin-brand {
+    padding: 28px 24px 24px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.admin-logo-mark {
+    height: 28px;
+}
+
+.admin-brand h2 {
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: #a3b734;
+    margin: 0;
+    letter-spacing: -0.02em;
+}
+
+.admin-nav {
+    flex: 1;
+    padding: 16px 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.admin-nav-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    color: #8a8f98;
+    text-decoration: none;
+    border-radius: 10px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: all 0.15s ease;
+}
+
+.admin-nav-item:hover {
+    background: rgba(255, 255, 255, 0.04);
+    color: #e2e8f0;
+}
+
+.admin-nav-item.active {
+    background: rgba(163, 183, 52, 0.1);
+    color: #a3b734;
+    font-weight: 600;
+}
+
+.nav-icon {
+    font-size: 1.1rem;
+    width: 24px;
+    text-align: center;
+}
+
+.admin-sidebar-footer {
+    padding: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.admin-user-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 14px;
+}
+
+.admin-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    background: #a3b734;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.9rem;
+}
+
+.admin-details {
+    display: flex;
+    flex-direction: column;
+}
+
+.admin-name {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #e2e8f0;
+}
+
+.admin-email {
+    font-size: 0.75rem;
+    color: #64748b;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 150px;
+}
+
+.admin-logout-btn {
+    width: 100%;
+    padding: 9px;
+    background: rgba(239, 68, 68, 0.06);
+    color: #ef4444;
+    border: 1px solid rgba(239, 68, 68, 0.12);
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.82rem;
+    transition: all 0.15s;
+}
+
+.admin-logout-btn:hover {
+    background: rgba(239, 68, 68, 0.15);
+}
+
+/* ——— Main Content ——— */
+.admin-main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    background: #0c0c0e;
+}
+
+.admin-header {
+    height: 80px;
+    padding: 0 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #141416;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.header-search {
+    flex: 1;
+    max-width: 400px;
+}
+
+.admin-search-input {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 10px 16px;
+    border-radius: 8px;
+    width: 100%;
+    color: #e2e8f0;
+    font-size: 0.9rem;
+    font-family: inherit;
+    transition: all 0.2s;
+}
+
+.admin-search-input:focus {
+    outline: none;
+    background: rgba(255, 255, 255, 0.07);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.admin-content-area {
+    flex: 1;
+    padding: 32px;
+    overflow-y: auto;
+}
+
+/* ——— Page Header ——— */
+.admin-page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 28px;
+}
+
+.admin-page-title {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 6px;
+    letter-spacing: -0.02em;
+}
+
+.admin-page-desc {
+    color: #64748b;
+    font-size: 0.9rem;
+}
+
+/* ——— Cards ——— */
+.admin-card {
+    background: #1a1a1e;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 14px;
+    padding: 24px;
+}
+
+/* ——— Stat Cards (Dashboard) ——— */
+.admin-stat-card {
+    background: #1a1a1e;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 14px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.admin-stat-card .stat-label {
+    color: #64748b;
+    font-size: 0.82rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.admin-stat-card .stat-value {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #fff;
+}
+
+.admin-stat-card .stat-value.lime {
+    color: #a3b734;
+}
+
+.admin-stat-card .stat-value.red {
+    color: #ef4444;
+}
+
+/* ——— Premium Table ——— */
+.admin-table-container {
+    overflow-x: auto;
+}
+
+.premium-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.premium-table th {
+    padding: 14px 16px;
+    color: #64748b;
+    font-weight: 600;
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    white-space: nowrap;
+}
+
+.premium-table td {
+    padding: 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+    color: #c0c7d0;
+    font-size: 0.9rem;
+}
+
+.premium-table tr:hover td {
+    background: rgba(255, 255, 255, 0.02);
+}
+
+/* ——— Status Badges ——— */
+.status-badge {
+    padding: 5px 12px;
+    border-radius: 6px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    display: inline-block;
+}
+
+.status-badge.pending {
+    background: rgba(245, 158, 11, 0.1);
+    color: #f59e0b;
+}
+
+.status-badge.completed {
+    background: rgba(16, 185, 129, 0.1);
+    color: #10b981;
+}
+
+.status-badge.feedback-type {
+    background: rgba(168, 85, 247, 0.15);
+    color: #a855f7;
+}
+
+/* ——— Plan Badges ——— */
+.admin-plan-badge {
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    display: inline-block;
+    white-space: nowrap;
+}
+
+.admin-plan-badge.free {
+    background: rgba(148, 163, 184, 0.1);
+    color: #94a3b8;
+}
+
+.admin-plan-badge.pro {
+    background: rgba(245, 158, 11, 0.15);
+    color: #f59e0b;
+}
+
+.admin-plan-badge.basic {
+    background: rgba(59, 130, 246, 0.15);
+    color: #3b82f6;
+}
+
+/* ——— Action Buttons ——— */
+.action-btn {
+    padding: 7px 14px;
+    background: rgba(163, 183, 52, 0.08);
+    color: #a3b734;
+    border: 1px solid rgba(163, 183, 52, 0.15);
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.82rem;
+    transition: all 0.15s;
+    font-family: inherit;
+}
+
+.action-btn:hover {
+    background: rgba(163, 183, 52, 0.18);
+}
+
+/* ——— Primary Filled Button (Submit/Add) ——— */
+.admin-btn-primary {
+    padding: 9px 20px;
+    background: #a3b734;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 0.88rem;
+    transition: all 0.15s;
+    font-family: inherit;
+}
+
+.admin-btn-primary:hover {
+    background: #96aa2e;
+}
+
+.admin-btn-primary:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* ——— Simplified Header Actions ——— */
+.admin-home-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 8px 18px;
+    border-radius: 100px;
+    color: #94a3b8;
+    font-size: 0.85rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.admin-home-btn:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.2);
+    color: #fff;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.admin-home-btn:active {
+    transform: translateY(0);
+}
+
+.admin-home-btn .home-icon {
+    font-size: 1rem;
+    margin-top: -1px;
+}
