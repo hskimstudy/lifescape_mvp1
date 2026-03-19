@@ -293,8 +293,44 @@ export default function ImageEditor({ session, onBack, onLogout, showToast }) {
                 throw new Error(errorMessage);
             }
 
+            let data = await response.json()
+
+            // Handle Asynchronous Polling for Vercel Serverless
+            if (data.status === "TaskCreated" && data.polling_url) {
+                console.log("Task created, starting polling...");
+                let completed = false;
+                const pollingUrl = data.polling_url;
+                
+                // Poll for up to 120 seconds
+                for (let i = 0; i < 60; i++) {
+                    if (controller.signal.aborted) break;
+                    await new Promise(r => setTimeout(r, 2000));
+                    
+                    try {
+                        const statusRes = await fetch(`${backendUrl}/status?polling_url=${encodeURIComponent(pollingUrl)}`, {
+                            signal: controller.signal
+                        });
+                        if (!statusRes.ok) continue;
+                        const statusData = await statusRes.json();
+                        
+                        if (statusData.status === "Ready") {
+                            data = statusData;
+                            completed = true;
+                            break;
+                        } else if (statusData.status === "Error" || statusData.status === "Failed") {
+                            throw new Error("이미지 생성 작업이 실패했습니다.");
+                        }
+                    } catch (e) {
+                        if (e.name === 'AbortError') throw e;
+                        console.warn("Polling error, retrying...", e);
+                    }
+                }
+                if (!completed && !controller.signal.aborted) {
+                    throw new Error("이미지 생성 시간이 너무 오래 걸립니다. 잠시 후 마이페이지에서 확인해 보세요.");
+                }
+            }
+
             await deductCredits(1)
-            const data = await response.json()
 
             const savedItems = []
             for (const url of data.images) {

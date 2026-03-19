@@ -113,19 +113,32 @@ async def generate_image(
             headers={"x-key": BFL_API_KEY, "Content-Type": "application/json"},
             json=payload, timeout=60)
         r.raise_for_status()
-        polling_url = r.json()["polling_url"]
-
-        while True:
-            time.sleep(2)
-            pr = requests.get(polling_url, headers={"x-key": BFL_API_KEY}, timeout=60)
-            res = pr.json()
-            if res.get("status") == "Ready":
-                return {"images": [res["result"]["sample"]]}
-            if res.get("status") in ("Error", "Failed"):
-                raise RuntimeError(f"BFL Task Failed: {res}")
+        req_data = r.json()
+        
+        # Return the polling URL to the frontend so it can poll itself 
+        # (This avoids serverless function timeouts during long-running polls)
+        return {
+            "status": "TaskCreated",
+            "polling_url": req_data["polling_url"]
+        }
 
     except Exception as e:
         print(f"Error: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+@app.get("/api/status")
+@app.get("/status")
+async def get_status(polling_url: str):
+    if not BFL_API_KEY:
+        raise HTTPException(status_code=500, detail="BFL_API_KEY not configured")
+    try:
+        pr = requests.get(polling_url, headers={"x-key": BFL_API_KEY}, timeout=30)
+        res = pr.json()
+        status = res.get("status")
+        if status == "Ready":
+            return {"status": "Ready", "images": [res["result"]["sample"]]}
+        return {"status": status}
+    except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
 @app.get("/api")
