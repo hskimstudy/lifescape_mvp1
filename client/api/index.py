@@ -29,6 +29,7 @@ async def validation_exception_handler(request: Request, exc: RequestValidationE
     return JSONResponse(status_code=422, content={"detail": exc.errors()})
 
 # Use FLUX.2 Klein 9B via BFL API
+# Note: In production, set BFL_API_KEY in Vercel environment variables
 BFL_API_KEY = os.environ.get("BFL_API_KEY", "bfl_GNXqDAG9WBfkcB9X8RJhBAE8EhHbCBJ1")
 BASE_URL = "https://api.bfl.ai/v1"
 BFL_MODEL = "flux-2-klein-9b"
@@ -47,6 +48,9 @@ async def generate_image(
     remove_bg: Optional[str] = Form("false"),
     resolution: Optional[str] = Form(None),
 ):
+    if not BFL_API_KEY:
+        raise HTTPException(status_code=500, detail="BFL_API_KEY not configured in environment")
+
     remove_bg_flag = str(remove_bg).lower() in ('true', '1', 'yes')
     
     if not prompt:
@@ -74,9 +78,11 @@ async def generate_image(
         new_w, new_h = (new_w // 8) * 8, (new_h // 8) * 8
         init_image = init_image.resize((new_w, new_h), Image.LANCZOS)
 
-        # Background removal (Nukki) - Disabled for Vercel size limit (630MB+)
+        # Background removal (Nukki) - Disabled for Vercel size limit
         if remove_bg_flag:
-            print("Background removal is currently disabled on Vercel deployment.")
+             # Vercel functions cannot run heavy local models like rembg easily within 250MB
+             # Just logging it for now.
+             print("Background removal is currently skipped on Vercel deployment to save resources.")
 
         def img_to_b64(img):
             buffered = io.BytesIO()
